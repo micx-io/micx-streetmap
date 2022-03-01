@@ -1,0 +1,39 @@
+{
+  "name": "micx/streetmap",
+  "description": "Project description",
+  "keywords": ["Keyword1", "Keyword2"],
+  "license": "Proprietary",
+  "authors": [
+    { "name": "Matthias Leuffen", "email": "m@tth.es" }
+  ],
+  "repositories": [
+  ],
+  "require": {
+    "php": ">=8.0",
+    "phore/cli-tools": "dev-master",
+    "phore/core": "dev-master",
+    "phore/misc": "dev-master",
+    "phore/hydrator": "*",
+    "phore/http-client": "*",
+    "phore/tester": "*",
+    "brace/core": "*",
+    "brace/dbg": "*",
+    "brace/command": "*",
+    "brace/mod-session": "*",
+    "brace/mod-cors": "*",
+    "brace/mod-body": "*",
+    "brace/mod-router": "*",
+    "brace/mod-request-laminas": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    },
+    "files": [
+      "config.php"
+    ]
+  },
+  "minimum-stability": "dev",
+  "require-dev": {
+  }
+}

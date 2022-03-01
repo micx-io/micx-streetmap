@@ -1,0 +1,32 @@
+version: 1
+from: "ghcr.io/nfra-project/kickstart-flavor-php:unstable"
+ports: "80:80"
+
+packages: [php8.0-curl, php8.0-http, php8.0-raphf, php8.0-redis, php8.0-sqlite]
+
+
+
+config_file:
+  template: "config.php.dist"
+  target: "config.php"
+
+command:
+  build:
+    ##- "sudo apt-get update && sudo apt-get install -y php-libsodium"
+    - "composer update"
+
+  download_test_data:
+    - "sudo phpdismod xdebug"
+    - "curl https://download.geofabrik.de/europe/germany/nordrhein-westfalen-latest.osm.bz2 > /tmp/test.bz2"
+    - "bzip2 -d /tmp/test.bz2"
+    - "gismapcli import -i /tmp/test"
+
+  update_germany:
+    - "sudo phpdismod xdebug"
+    - "curl https://download.geofabrik.de/europe/germany-latest.osm.bz2 > /tmp/germany.bz2"
+    - "bzip2 -d /tmp/germany.bz2"
+    - "gismapcli import -i /tmp/germany"
+
+  test:
+    - "ptest"
+

@@ -1,0 +1,29 @@
+image: docker:stable
+stages:
+  - test
+  - build
+
+
+services:
+  - docker:dind
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+before_script:
+  - apk update && apk add bash curl
+
+
+test:
+  stage: test
+  script:
+    - ./kickstart.sh :startup test
+
+latest:
+  stage: build
+  script:
+    - ./kickstart.sh ci-build
+  only:
+    - master
+
+

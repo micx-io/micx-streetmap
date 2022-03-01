@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h1>Plz mapper</h1>
+    <template is="ka-tpl" auto>
+        <script>
+            ((self) => {
+                let $scope = self.scopeInit({
+                    filter: '',
+                    suggestions: [],
+                    $fn: {
+                        query: (search) => {
+                            ka_http_req("/v1/suggest").withParams({q: search}).json
+                                = (data) => $scope.suggestions = data.suggestions;
+                        }
+                    }
+                });
+
+            })(KaTpl.self);
+        </script>
+        <form is="ka-form" [on.change]="$fn.query($this.$data.q)">
+            <input name="q" [placeholder]="typeof($scope.suggestions[0]) !== 'undefined' ? $scope.suggestions[0].street_name : ''">
+        </form>
+        <table>
+            <tr *for="let row of suggestions">
+                <td>{{row.street_name}}</td>
+                <td>{{row.city}}</td>
+            </tr>
+        </table>
+    </template>
+
+
+    <script src="kasimirjs.full.js"></script>
+</body>
+</html>

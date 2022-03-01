@@ -1,0 +1,1 @@
+KICKSTART_DOCKER_RUN_OPTS="-v /media/fdd/tmp:/tmp"
