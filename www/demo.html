@@ -3,38 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 </head>
-<body>
+<body class="content">
 
-    <h1>Plz mapper</h1>
-    <template is="ka-tpl" auto>
-        <script>
-            ((self) => {
-                let $scope = self.scopeInit({
-                    filter: '',
-                    suggestions: [],
-                    $fn: {
-                        query: (search) => {
-                            ka_http_req("/v1/suggest").withParams({q: search}).json
-                                = (data) => $scope.suggestions = data.suggestions;
-                        }
-                    }
-                });
+    <div class="container">
+        <h1>Plz mapper</h1>
+        <input id="address1" class="form-control form-control-lg" type="text" placeholder=".form-control-lg" aria-label=".form-control-lg example">
+        <micx-streetmap-suggest for="address1">
 
-            })(KaTpl.self);
-        </script>
-        <form is="ka-form" [on.change]="$fn.query($this.$data.q)">
-            <input name="q" [placeholder]="typeof($scope.suggestions[0]) !== 'undefined' ? $scope.suggestions[0].street_name : ''">
-        </form>
-        <table>
-            <tr *for="let row of suggestions">
-                <td>{{row.street_name}}</td>
-                <td>{{row.city}}</td>
-            </tr>
-        </table>
-    </template>
+        </micx-streetmap-suggest>
+    </div>
 
 
-    <script src="kasimirjs.full.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="/v1/streetmap/streetmap.js?subscription_id=demo"></script>
 </body>
 </html>

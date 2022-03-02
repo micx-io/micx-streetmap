@@ -35,5 +35,8 @@
   },
   "minimum-stability": "dev",
   "require-dev": {
+  },
+  "config": {
+    "preferred-install": "source"
   }
 }

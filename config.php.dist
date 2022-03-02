@@ -9,7 +9,7 @@
  */
 
 define("DEV_MODE", (bool)"%DEV_MODE%");
-define("VERSION_INFO", "v0.1.%VERSION_NUMBER% (%VERSION_DATE_COMPACT%)");
+define("CONFIG_PATH", "%CONFIG_PATH?/opt/cfg%");
 
 define("SQLITE_FILE", "/opt/osm_data.sqlite");
 
